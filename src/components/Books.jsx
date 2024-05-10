@@ -7,7 +7,7 @@ import Search from "../components/Search";
 function Books() {
   const [liked, setLiked] = useState([]);
   const [search, setSearch] = useState([]);
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(bookdata);
 
   const searchHandler = () => {
     if (search) {
