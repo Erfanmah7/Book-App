@@ -1,7 +1,13 @@
+import Layout from "./Layout/Layout.jsx";
+import Books from "./components/Books.jsx";
+
+
 function App() {
   return (
     <>
-      <h1>Book App Starting files</h1>
+      <Layout>
+        <Books />
+      </Layout>
     </>
   );
 }
