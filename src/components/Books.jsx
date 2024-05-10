@@ -1,10 +1,24 @@
 import React, { useState } from "react";
-import { books } from "../constants/mockData";
+import { books as bookdata } from "../constants/mockData";
 import BookCards from "../components/BookCards";
 import Favorites from "../components/Favorites";
+import Search from "../components/Search";
 
 function Books() {
   const [liked, setLiked] = useState([]);
+  const [search, setSearch] = useState([]);
+  const [books, setBooks] = useState([]);
+
+  const searchHandler = () => {
+    if (search) {
+      const newsearch = bookdata.filter((b) =>
+        b.title.toLowerCase().includes(search)
+      );
+      setBooks(newsearch);
+    } else {
+      setBooks(bookdata);
+    }
+  };
 
   const likedHandler = (book, status) => {
     //اگر لایک رو برداشت
@@ -20,16 +34,21 @@ function Books() {
 
   return (
     <div>
+      <Search
+        search={search}
+        setSearch={setSearch}
+        searchHandler={searchHandler}
+      />
       <div>
         {books.map((book) => (
           <BookCards key={book.id} data={book} likedHandler={likedHandler} />
         ))}
       </div>
-
+      {/* ! تبدیل مقدار به بولین با */}
       {!!liked.length && (
         <div>
-          {liked.map((i) => (
-            <Favorites key={i.id} data={i} />
+          {liked.map((like) => (
+            <Favorites key={like.id} data={like} />
           ))}
         </div>
       )}
