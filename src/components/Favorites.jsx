@@ -1,10 +1,10 @@
 import React from "react";
-import FavoritesItem from "./FavoritesItem";
 
-function Favorites() {
+function Favorites({ data: { title, image } }) {
   return (
     <div>
-      <FavoritesItem />
+      <img src={image} alt={title} />
+      <p>{title}</p>
     </div>
   );
 }
