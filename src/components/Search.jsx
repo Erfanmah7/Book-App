@@ -1,8 +1,10 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import styles from "../style/search.module.css";
+
 function Search({ setSearch, search, searchHandler }) {
   return (
-    <div>
+    <div className={styles.search}>
       <input
         type="text"
         value={search}

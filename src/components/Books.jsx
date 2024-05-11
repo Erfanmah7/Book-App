@@ -3,6 +3,7 @@ import { books as bookdata } from "../constants/mockData";
 import BookCards from "../components/BookCards";
 import Favorites from "../components/Favorites";
 import Search from "../components/Search";
+import styles from "../style/books.module.css";
 
 function Books() {
   const [liked, setLiked] = useState([]);
@@ -33,26 +34,30 @@ function Books() {
   };
 
   return (
-    <div>
+    <>
+      {" "}
       <Search
         search={search}
         setSearch={setSearch}
         searchHandler={searchHandler}
       />
-      <div>
-        {books.map((book) => (
-          <BookCards key={book.id} data={book} likedHandler={likedHandler} />
-        ))}
-      </div>
-      {/* ! تبدیل مقدار به بولین با */}
-      {!!liked.length && (
-        <div>
-          {liked.map((like) => (
-            <Favorites key={like.id} data={like} />
+      <div className={styles.container}>
+        <div className={styles.cards}>
+          {books.map((book) => (
+            <BookCards key={book.id} data={book} likedHandler={likedHandler} />
           ))}
         </div>
-      )}
-    </div>
+        {/* ! تبدیل مقدار به بولین با */}
+        {!!liked.length && (
+          <div className={styles.favorite}>
+            <h4>Favorite</h4>
+            {liked.map((like) => (
+              <Favorites key={like.id} data={like} />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
